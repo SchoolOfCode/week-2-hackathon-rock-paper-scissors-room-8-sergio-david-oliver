@@ -1,4 +1,4 @@
-let userInput = "scissors";
+let userInput = "paper";
 let computerInput = "paper";
 
 function getWinner(playerMove, computerMove) {
@@ -15,4 +15,10 @@ function getWinner(playerMove, computerMove) {
   }
 }
 
-getWinner(userInput, computerInput);
+// Higher-order function that accepts a callback and passes moves as arguments
+function callbackEvent(callback, playerMove, computerMove) {
+  callback(playerMove, computerMove); // Calls the callback with the necessary arguments
+}
+
+// Call callbackEvent, passing getWinner as the callback and the moves as arguments
+callbackEvent(getWinner, userInput, computerInput);
