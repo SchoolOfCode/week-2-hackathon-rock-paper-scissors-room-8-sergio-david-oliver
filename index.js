@@ -1,10 +1,18 @@
-let userInput = "paper";
-let computerInput = "paper";
+let userInput = "lizard";
+let computerInput = "lizard";
 
 let rpsRules = {
   rock: ["scissors"],
   scissors: ["paper"],
   paper: ["rock"],
+};
+
+let rpslsRules = {
+  rock: ["scissors", "lizard"],
+  lizard: ["spock", "paper"],
+  spock: ["scissors", "rock"],
+  scissors: ["lizard", "paper"],
+  paper: ["rock", "spock"],
 };
 
 // Rather than having repeating || if statements to declare win conditions,
@@ -29,5 +37,9 @@ function callbackEvent(callback, playerMove, computerMove, rules) {
 }
 
 // Call callbackEvent, passing getWinner as the callback and the moves as arguments
+
 // Initiates logic for regular game
-callbackEvent(getWinner, userInput, computerInput, rpsRules);
+/* callbackEvent(getWinner, userInput, computerInput, rpsRules); */
+
+// Initiates logic for incorporating lizard and spock into the game
+callbackEvent(getWinner, userInput, computerInput, rpslsRules);
