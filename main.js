@@ -16,19 +16,39 @@ let array = [rock, paper, scissors]
 let userScore = 0;
 let compScore = 0;
 
-
 alert("welcome to our rock, paper scissors game!");
-let userInput = prompt("Please type rock, paper or scissors below to make your move.");
 
-while (userInput != "rock" && userInput != "paper" && userInput != "scissors") {
-    if (userInput === null) {
-        break; // this just means that if the user clicks cancel instead of ok then the whole thing stops. Later can link this up with David's code.
-    } else {
-        alert("Sorry, I didn't catch that. Please try again.");
-        userInput = prompt("Type either rock, paper of scissors below to make your move.");
-    }
+
+function generateUserInput() {
+    let choice = prompt("Please type rock, paper or scissors below to make your move.");
+    while (choice != "rock" && choice != "paper" && choice != "scissors") {
+        if (choice === null) {
+            break; // this just means that if the user clicks cancel instead of ok then the whole thing stops. Later can link this up with David's code.
+        } else {
+            alert("Sorry, I didn't catch that. Please try again.");
+            choice = prompt("Type either rock, paper or scissors below to make your move.");
+        }
+    } return choice
 }
 
-console.log(userInput); 
 // user is prompted for an input. if they don't type rock, paper or scissors exactly then they are asked again.
 
+
+function generateCompInput() {
+    let randomNum = Math.floor(Math.random() * 3) + 1;
+    let randomChoice = "";
+    if (randomNum === 1) {
+        randomChoice = "rock";
+    } else if (randomNum === 2) {
+        randomChoice = "paper";
+    } else {
+        randomChoice = "scissors";
+    }
+    return randomChoice
+} //generates random compouter move.
+
+let userInput = generateUserInput()
+let compInput = generateCompInput()
+
+console.log(userInput + " user");
+console.log(compInput + " comp");
