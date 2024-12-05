@@ -1,12 +1,20 @@
 let userInput = "paper";
 let computerInput = "paper";
 
-function getWinner(playerMove, computerMove) {
-  if (
-    (playerMove == "rock" && computerMove == "scissors") ||
-    (playerMove == "paper" && computerMove == "rock") ||
-    (playerMove == "scissors" && computerMove == "paper")
-  ) {
+let rpsRules = {
+  rock: ["scissors"],
+  scissors: ["paper"],
+  paper: ["rock"],
+};
+
+// Rather than having repeating || if statements to declare win conditions,
+// we are instead storing win conditions in a object as key:value pairs
+// storing the value inside an array. So we can instead search for the value with .includes
+// this is good because it saves us a lot of lines of code, and makes the code a lot more dynamic
+// as now we can implement scalability and leave the function for deciding who wins the same
+
+function getWinner(playerMove, computerMove, rules) {
+  if (rules[playerMove].includes(computerMove)) {
     console.log("win");
   } else if (playerMove == computerMove) {
     console.log("tie");
@@ -16,9 +24,10 @@ function getWinner(playerMove, computerMove) {
 }
 
 // Higher-order function that accepts a callback and passes moves as arguments
-function callbackEvent(callback, playerMove, computerMove) {
-  callback(playerMove, computerMove); // Calls the callback with the necessary arguments
+function callbackEvent(callback, playerMove, computerMove, rules) {
+  callback(playerMove, computerMove, rules); // Calls the callback with the necessary arguments
 }
 
 // Call callbackEvent, passing getWinner as the callback and the moves as arguments
-callbackEvent(getWinner, userInput, computerInput);
+// Initiates logic for regular game
+callbackEvent(getWinner, userInput, computerInput, rpsRules);
