@@ -1,5 +1,5 @@
 let userInput = "lizard";
-let computerInput = "lizard";
+let computerInput = "spock";
 
 let rpsRules = {
   rock: ["scissors"],
@@ -7,13 +7,13 @@ let rpsRules = {
   paper: ["rock"],
 };
 
-let rpslsRules = {
+/* let rpslsRules = {
   rock: ["scissors", "lizard"],
   lizard: ["spock", "paper"],
   spock: ["scissors", "rock"],
   scissors: ["lizard", "paper"],
   paper: ["rock", "spock"],
-};
+}; */
 
 // Rather than having repeating || if statements to declare win conditions,
 // we are instead storing win conditions in a object as key:value pairs
