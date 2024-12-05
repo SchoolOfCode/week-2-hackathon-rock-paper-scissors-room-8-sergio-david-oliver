@@ -1,0 +1,66 @@
+Let's try to divide the problem into 3 portions so that we are able to work on seperate things:
+Start with a common repo, everyone branches to work individually, we merge at the end.
+
+1. Scoring and input variables
+2. Logic 
+3. Determine winner, next steps (stop, continue)
+
+1. Scoring and input variables Psuedocode:
+
+-Create empty variables for score (player score and computer)
+-Create first prompt for the user to select their move (either as multiple choice or typing out)
+-Create an object with 3 options (rock, paper, scissors)
+
+let array = [rock, paper, scissors]
+            [0,     1,      2]
+            Math.floor(Math.random(3))
+
+-Once a random number has been generater, come up with a nested if statement that assigns the computer's move
+
+2. Logic Pseudocode:
+
+ We have 3 options to choose from: rock, paper, scissors
+
+ rock beats scissors
+ scissors beats paper
+ paper beats rock
+
+ set winningHand = false;
+
+
+                    user win
+                    user rock - comp scissors
+                    user paper - comp rock
+                    user scissors - comp paper
+
+
+                                draw 
+                                user rock - comp rock
+                                user paper - comp paper
+                                user scissors - comp scissors   // Don't need these options, as draw can be determined by user = comp
+
+
+                                        user lose
+                                        user rock - comp paper
+                                        user paper - comp scissors
+                                        user scissors - comp rock // With that logic probably don't need this either, as an "else" can probably cover it
+
+
+
+
+if rock > scissors {winningHand = true}
+if scissors > paper {winningHand = true}
+if paper > rock {winningHand = true}
+
+
+3. Determining winnner & next steps Pseudocode:
+
+-What happens if user wins, draws, or loses
+-If win, score++ and congratulations message
+-If draw, no change to score, draw message
+-If lose, computerScore++ and you lose message
+
+-Options to play again?
+-Confirm() returns true or false,
+-If true, loop continues, score maintained
+-If cancel, game stops, thanks for playing + "name", alert message of final score
