@@ -13,7 +13,7 @@ let array = [rock, paper, scissors]
 
 -Once a random number has been generater, come up with a nested if statement that assigns the computer's move */
 
-let userScore = 0;
+let userScore = 4;
 let compScore = 0;
 
 alert("welcome to our rock, paper scissors game!");
@@ -23,6 +23,7 @@ function generateUserInput() {
     let choice = prompt("Please type rock, paper or scissors below to make your move.");
     while (choice != "rock" && choice != "paper" && choice != "scissors") {
         if (choice === null) {
+            alert(`Thanks for playing! Your score is ${userScore}`)
             break; // this just means that if the user clicks cancel instead of ok then the whole thing stops. Later can link this up with David's code.
         } else {
             alert("Sorry, I didn't catch that. Please try again.");
