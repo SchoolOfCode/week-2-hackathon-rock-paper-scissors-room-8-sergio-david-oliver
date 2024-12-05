@@ -1,55 +1,105 @@
-console.log("hi")
-// 1. Scoring and input variables - ollie
+// OLIVER CODE
 
-/* 1. Scoring and input variables Psuedocode:
-
--Create empty variables for score (player score and computer)
--Create first prompt for the user to select their move (either as multiple choice or typing out)
--Create an object with 3 options (rock, paper, scissors)
-
-let array = [rock, paper, scissors]
-            [0,     1,      2]
-            Math.floor(Math.random(3))
-
--Once a random number has been generater, come up with a nested if statement that assigns the computer's move */
-
-let userScore = 4;
+let playAgain = true;
+let userScore = 0;
 let compScore = 0;
 
-alert("welcome to our rock, paper scissors game!");
+alert("Welcome to our rock, paper scissors game!");
 
+while (playAgain) {
+  let result;
 
-function generateUserInput() {
-    let choice = prompt("Please type rock, paper or scissors below to make your move.");
+  function generateUserInput() {
+    let choice = prompt(
+      "Please type rock, paper or scissors below to make your move."
+    );
     while (choice != "rock" && choice != "paper" && choice != "scissors") {
-        if (choice === null) {
-            alert(`Thanks for playing! Your score is ${userScore}`)
-            break; // this just means that if the user clicks cancel instead of ok then the whole thing stops. Later can link this up with David's code.
-        } else {
-            alert("Sorry, I didn't catch that. Please try again.");
-            choice = prompt("Type either rock, paper or scissors below to make your move.");
-        }
-    } return choice
-}
+      if (choice === null) {
+        alert(`Thanks for playing! Your score is ${userScore}`);
+        break; // this just means that if the user clicks cancel instead of ok then the whole thing stops. Later can link this up with David's code.
+      } else {
+        alert("Sorry, I didn't catch that. Please try again.");
+        choice = prompt(
+          "Type either rock, paper or scissors below to make your move."
+        );
+      }
+    }
+    return choice;
+  }
 
-// user is prompted for an input. if they don't type rock, paper or scissors exactly then they are asked again.
+  // user is prompted for an input. if they don't type rock, paper or scissors exactly then they are asked again.
 
-
-function generateCompInput() {
+  function generateCompInput() {
     let randomNum = Math.floor(Math.random() * 3) + 1;
     let randomChoice = "";
     if (randomNum === 1) {
-        randomChoice = "rock";
+      randomChoice = "rock";
     } else if (randomNum === 2) {
-        randomChoice = "paper";
+      randomChoice = "paper";
     } else {
-        randomChoice = "scissors";
+      randomChoice = "scissors";
     }
-    return randomChoice
-} //generates random compouter move.
+    return randomChoice;
+  } //generates random compouter move.
 
-let userInput = generateUserInput()
-let compInput = generateCompInput()
+  let userInput = generateUserInput();
+  let computerInput = generateCompInput();
 
-console.log(userInput + " user");
-console.log(compInput + " comp");
+  console.log(userInput);
+  console.log(computerInput);
+
+  // SERGE CODE
+
+  // Ruleset for regular game
+  let rpsRules = {
+    rock: ["scissors"],
+    scissors: ["paper"],
+    paper: ["rock"],
+  };
+
+  // Ruleset for lizard spock, can implement later
+  /* let rpslsRules = {
+  rock: ["scissors", "lizard"],
+  lizard: ["spock", "paper"],
+  spock: ["scissors", "rock"],
+  scissors: ["lizard", "paper"],
+  paper: ["rock", "spock"],
+}; */
+
+  function getWinner(playerMove, computerMove, rules) {
+    if (rules[playerMove].includes(computerMove)) {
+      result = `You win! ${userInput} beats ${computerInput}.`;
+      userScore += 1;
+      compScore -= 1;
+      console.log("win");
+    } else if (playerMove == computerMove) {
+      result = `It's a draw! Each of you chose ${userInput}.`;
+      console.log("tie");
+    } else {
+      result = `You lose! ${computerInput} beats ${userInput}.`;
+      userScore -= 1;
+      compScore += 1;
+      console.log("lose");
+    }
+  }
+
+  // Higher-order function that accepts a callback and passes moves as arguments
+  function callbackEvent(callback, playerMove, computerMove, rules) {
+    callback(playerMove, computerMove, rules); // Calls the callback with the necessary arguments
+  }
+
+  // Initiates logic for regular game
+  // Call callbackEvent, passing getWinner as the callback and the moves as arguments
+  callbackEvent(getWinner, userInput, computerInput, rpsRules);
+
+  // DAVID CODE
+
+  alert(result);
+
+  if (confirm("Do you want to play again?")) {
+    playAgain = true;
+  } else {
+    playAgain = false;
+    alert(`Thanks for playing, your score is ${userScore}`);
+  }
+}
