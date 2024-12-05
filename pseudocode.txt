@@ -1,9 +1,9 @@
 Let's try to divide the problem into 3 portions so that we are able to work on seperate things:
 Start with a common repo, everyone branches to work individually, we merge at the end.
 
-1. Scoring and input variables
-2. Logic 
-3. Determine winner, next steps (stop, continue)
+1. Scoring and input variables - ollie
+2. Logic - serge
+3. Determine winner, next steps (stop, continue) - david
 
 1. Scoring and input variables Psuedocode:
 
