@@ -4,7 +4,9 @@ let playAgain = true;
 let userScore = 0;
 let compScore = 0;
 
-alert("Welcome to our rock, paper scissors game!");
+alert(
+  "Welcome to our rock, paper scissors game! The winner is the first to get to 5, good luck!"
+);
 
 while (playAgain) {
   let result;
@@ -96,10 +98,19 @@ while (playAgain) {
 
   alert(result);
 
-  if (confirm("Do you want to play again?")) {
-    playAgain = true;
-  } else {
-    playAgain = false;
-    alert(`Thanks for playing, your score is ${userScore}`);
+  if (userScore === 5) {
+    alert("Congratulations, you win with a score of 5!");
+    playAgain = confirm("Do you want to play again from the start?");
+    if (playAgain) {
+      userScore = 0;
+      compScore = 0;
+    }
+  } else if (compScore === 5) {
+    alert("Sorry, you lose. The computer has won with a score of 5.");
+    playAgain = confirm("Do you want to play again from the start?");
+    if (playAgain) {
+      userScore = 0;
+      compScore = 0;
+    }
   }
 }
