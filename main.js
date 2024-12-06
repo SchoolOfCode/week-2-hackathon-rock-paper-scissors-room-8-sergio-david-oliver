@@ -4,18 +4,19 @@ let playAgain = true;
 let userScore = 0;
 let compScore = 0;
 
-
-
 alert(
-  "Welcome to our rock, paper scissors game! The winner is the first to get to 5, good luck!"
+  "Welcome to our rock, paper scissors game! The winner is the first to get to 3, good luck!"
 );
 let userName = prompt("Please enter your name below.");
 
-
-let gameState = prompt("Type 1 to select the classic version, or type 2 for the extended version (includes lizard and Spock).");
+let gameState = prompt(
+  "Type 1 to select the classic version, or type 2 for the extended version (includes lizard and Spock)."
+);
 while (gameState != 1 && gameState != 2) {
   alert("Sorry, I didn't catch that. Please try again.");
-  gameState = prompt("Type 1 to select the classic version, or type 2 for the extended version (includes lizard and Spock).");
+  gameState = prompt(
+    "Type 1 to select the classic version, or type 2 for the extended version (includes lizard and Spock)."
+  );
 }
 
 if (gameState == 1) {
@@ -33,7 +34,9 @@ if (gameState == 1) {
           break; // this just means that if the user clicks cancel instead of ok then the whole thing stops. Later can link this up with David's code.
         } else {
           alert("Sorry, I didn't catch that. Please try again.");
-          choice = prompt("Type either rock, paper or scissors below to make your move.");
+          choice = prompt(
+            "Type either rock, paper or scissors below to make your move."
+          );
         }
       }
       return choice;
@@ -83,15 +86,15 @@ if (gameState == 1) {
         result = `Congratulations ${userName}, You win! ${userInput} beats ${computerInput}.`;
         userScore += 1;
         let editPoints = document.getElementById("points");
-        editPoints.innerHTML = userScore
-        compScore -= 1;
+        editPoints.innerHTML = userScore;
+
         console.log("win");
       } else if (playerMove == computerMove) {
         result = `It's a draw! Each of you chose ${userInput}.`;
         console.log("tie");
       } else {
         result = `Bad luck ${userName}, You lose! ${computerInput} beats ${userInput}.`;
-        userScore -= 1;
+
         compScore += 1;
         console.log("lose");
       }
@@ -109,12 +112,20 @@ if (gameState == 1) {
     // DAVID CODE
 
     alert(result);
-
-    if (confirm("Do you want to play again?")) {
-      playAgain = true;
-    } else {
-      playAgain = false;
-      alert(`Thanks for playing ${userName}, your score is ${userScore}`);
+    if (userScore === 3) {
+      alert("Congratulations, you win with a score of 3!");
+      playAgain = confirm("Do you want to play again from the start?");
+      if (playAgain) {
+        userScore = 0;
+        compScore = 0;
+      }
+    } else if (compScore === 3) {
+      alert("Sorry, you lose. The computer has won with a score of 3.");
+      playAgain = confirm("Do you want to play again from the start?");
+      if (playAgain) {
+        userScore = 0;
+        compScore = 0;
+      }
     }
   }
 } else if (gameState == 2) {
@@ -123,14 +134,24 @@ if (gameState == 1) {
     let result;
 
     function generateUserInput() {
-      let choice = prompt("Please type rock, paper, scissors, lizard or spock below to make your move.");
-      while (choice != "rock" && choice != "paper" && choice != "scissors" && choice != "lizard" && choice != "spock") {
+      let choice = prompt(
+        "Please type rock, paper, scissors, lizard or spock below to make your move."
+      );
+      while (
+        choice != "rock" &&
+        choice != "paper" &&
+        choice != "scissors" &&
+        choice != "lizard" &&
+        choice != "spock"
+      ) {
         if (choice === null) {
           alert(`Thanks for playing ${userName}, Your score is ${userScore}`);
           break; // this just means that if the user clicks cancel instead of ok then the whole thing stops. Later can link this up with David's code.
         } else {
           alert("Sorry, I didn't catch that. Please try again.");
-          choice = prompt("Type either rock, paper, scissors, lizard or spock below to make your move.");
+          choice = prompt(
+            "Type either rock, paper, scissors, lizard or spock below to make your move."
+          );
         }
       }
       return choice;
@@ -172,25 +193,23 @@ if (gameState == 1) {
 
     // Ruleset for lizard spock, can implement later
     let rpslsRules = {
-    rock: ["scissors", "lizard"],
-    lizard: ["spock", "paper"],
-    spock: ["scissors", "rock"],
-    scissors: ["lizard", "paper"],
-    paper: ["rock", "spock"],
-  };
+      rock: ["scissors", "lizard"],
+      lizard: ["spock", "paper"],
+      spock: ["scissors", "rock"],
+      scissors: ["lizard", "paper"],
+      paper: ["rock", "spock"],
+    };
 
     function getWinner(playerMove, computerMove, rules) {
       if (rules[playerMove].includes(computerMove)) {
         result = `Congratulations ${userName}, You win! ${userInput} beats ${computerInput}.`;
         userScore += 1;
-        compScore -= 1;
         console.log("win");
       } else if (playerMove == computerMove) {
         result = `It's a draw! Each of you chose ${userInput}.`;
         console.log("tie");
       } else {
         result = `Bad luck ${userName}, You lose! ${computerInput} beats ${userInput}.`;
-        userScore -= 1;
         compScore += 1;
         console.log("lose");
       }
@@ -209,22 +228,20 @@ if (gameState == 1) {
 
     alert(result);
 
-
-
-  if (userScore === 5) {
-    alert("Congratulations, you win with a score of 5!");
-    playAgain = confirm("Do you want to play again from the start?");
-    if (playAgain) {
-      userScore = 0;
-      compScore = 0;
-    }
-  } else if (compScore === 5) {
-    alert("Sorry, you lose. The computer has won with a score of 5.");
-    playAgain = confirm("Do you want to play again from the start?");
-    if (playAgain) {
-      userScore = 0;
-      compScore = 0;
-
+    if (userScore === 3) {
+      alert("Congratulations, you win with a score of 3!");
+      playAgain = confirm("Do you want to play again from the start?");
+      if (playAgain) {
+        userScore = 0;
+        compScore = 0;
+      }
+    } else if (compScore === 3) {
+      alert("Sorry, you lose. The computer has won with a score of 3.");
+      playAgain = confirm("Do you want to play again from the start?");
+      if (playAgain) {
+        userScore = 0;
+        compScore = 0;
+      }
     }
   }
 }

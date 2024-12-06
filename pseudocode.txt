@@ -3,7 +3,7 @@ Start with a common repo, everyone branches to work individually, we merge at th
 
 1. Scoring and input variables - ollie
 2. Logic - serge
-3. Determine winner, next steps (stop, continue) - david
+3. Determine winner, replay? - david
 
 1. Scoring and input variables Psuedocode:
 
