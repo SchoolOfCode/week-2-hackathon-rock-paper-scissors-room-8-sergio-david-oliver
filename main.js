@@ -4,8 +4,13 @@ let playAgain = true;
 let userScore = 0;
 let compScore = 0;
 
-alert("Welcome to our rock, paper scissors game!");
+
+
+alert(
+  "Welcome to our rock, paper scissors game! The winner is the first to get to 5, good luck!"
+);
 let userName = prompt("Please enter your name below.");
+
 
 let gameState = prompt("Type 1 to select the classic version, or type 2 for the extended version (includes lizard and Spock).");
 while (gameState != 1 && gameState != 2) {
@@ -204,11 +209,22 @@ if (gameState == 1) {
 
     alert(result);
 
-    if (confirm("Do you want to play again?")) {
-      playAgain = true;
-    } else {
-      playAgain = false;
-      alert(`Thanks for playing ${userName}, your score is ${userScore}`);
+
+
+  if (userScore === 5) {
+    alert("Congratulations, you win with a score of 5!");
+    playAgain = confirm("Do you want to play again from the start?");
+    if (playAgain) {
+      userScore = 0;
+      compScore = 0;
+    }
+  } else if (compScore === 5) {
+    alert("Sorry, you lose. The computer has won with a score of 5.");
+    playAgain = confirm("Do you want to play again from the start?");
+    if (playAgain) {
+      userScore = 0;
+      compScore = 0;
+
     }
   }
 }
