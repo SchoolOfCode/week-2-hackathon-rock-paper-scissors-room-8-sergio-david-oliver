@@ -109,9 +109,9 @@ if (gameState == 1) {
     // Call callbackEvent, passing getWinner as the callback and the moves as arguments
     callbackEvent(getWinner, userInput, computerInput, rpsRules);
 
-    // DAVID CODE
-
     alert(result);
+
+    // DAVID CODE
     if (userScore === 3) {
       alert("Congratulations, you win with a score of 3!");
       playAgain = confirm("Do you want to play again from the start?");
